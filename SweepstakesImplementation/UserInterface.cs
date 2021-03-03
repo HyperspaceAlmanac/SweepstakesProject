@@ -68,7 +68,7 @@ namespace SweepstakesImplementation
             return new string[] { firstName, lastName};
 
         }
-        static string GetEmail()
+        public static string GetEmail()
         {
             bool done = false;
             bool prevError = false;
@@ -98,11 +98,11 @@ namespace SweepstakesImplementation
             }
             return email;
         }
-        static string GetAddress()
+        public static string GetAddress()
         {
             return GetUserInputFor("Please fill out your address:");
         }
-        static int GetRegistrationNumber()
+        public static int GetRegistrationNumber()
         {
             bool done = false;
             bool prevError = false;

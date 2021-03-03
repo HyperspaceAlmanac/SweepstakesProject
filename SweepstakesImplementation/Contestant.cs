@@ -16,10 +16,12 @@ namespace SweepstakesImplementation
 
         public void FillOutInformation()
         {
-            FillOutFirstAndLastName();
-            FillOutEmail();
-            FillOutAddress();
-            FillOutRegistrationNumber();
+            string[] temp = UserInterface.GetFirstAndLastName();
+            firstName = temp[0];
+            lastName = temp[1];
+            email = UserInterface.GetEmail();
+            address = UserInterface.GetAddress();
+            registrationNumber = UserInterface.GetRegistrationNumber();
         }
         // For testing and instantiating Contestant class without asking for user input
         public void FillOutInformation(string firstName, string lastName, string email, string address, int registrationNumber)
