@@ -8,15 +8,23 @@ namespace SweepstakesImplementation
 {
     class SweepstakesQueueManager : ISweepstakesManager
     {
-        private Queue<SweepStakes> stack;
+        private Queue<SweepStakes> queue;
 
         public void InsertSweepstakes(SweepStakes sweepstakes)
         {
+            queue.Enqueue(sweepstakes);
         }
 
         public SweepStakes GetSweepstakes()
         {
-            return null;
+            if (queue.Count > 0)
+            {
+                return queue.Dequeue();
+            }
+            else
+            {
+                return null;
+            }
         }
     }
 }

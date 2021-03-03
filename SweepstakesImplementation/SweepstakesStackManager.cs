@@ -12,11 +12,19 @@ namespace SweepstakesImplementation
 
         public void InsertSweepstakes(SweepStakes sweepstakes)
         {
+            stack.Push(sweepstakes);
         }
 
         public SweepStakes GetSweepstakes()
         {
-            return null;
+            if (stack.Count > 0)
+            {
+                return stack.Pop();
+            }
+            else
+            {
+                return null;
+            }
         }
     }
 }
