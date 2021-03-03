@@ -43,8 +43,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Contestant.cs" />
+    <Compile Include="EmailChecker.cs" />
+    <Compile Include="ISweepstakesManager.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SweepStakes.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
