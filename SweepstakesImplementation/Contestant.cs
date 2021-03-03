@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SweepstakesImplementation
 {
-    class Contestant
+    class Contestant : INotification
     {
         private string firstName;
         private string lastName;
@@ -32,7 +32,7 @@ namespace SweepstakesImplementation
             this.address = address;
             this.registrationNumber = registrationNumber;
         }
-        public void SweepstakesMessage(string message)
+        public void Notify(string message)
         {
         }
         public string FirstName { get; set; }

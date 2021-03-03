@@ -12,11 +12,11 @@ namespace SweepstakesImplementation
         {
             SweepstakesManagerType managerType = UserInterface.AskForSweepstakesManagerType();
 
-            ISweepstakesManager manager = GenerateSweepstakesManager(managerType);
+            ISweepstakesManager manager = SweepstakesManagerFactory(managerType);
             MarketingFirm firm = new MarketingFirm(manager);
         }
 
-        public ISweepstakesManager GenerateSweepstakesManager(SweepstakesManagerType sweepstakesType)
+        public ISweepstakesManager SweepstakesManagerFactory(SweepstakesManagerType sweepstakesType)
         {
             if (sweepstakesType == SweepstakesManagerType.QueueManager)
             {

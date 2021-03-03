@@ -15,6 +15,7 @@ namespace SweepstakesImplementation
         {
             this.name = name;
             rand = new Random(100);
+            dictionary = new Dictionary<int, Contestant>();
         }
         public string Name
         {
@@ -34,11 +35,11 @@ namespace SweepstakesImplementation
             {
                 if (contestantNumber == winnerRegistrationNumber)
                 {
-                    dictionary[contestantNumber].SweepstakesMessage(winnerMessage);
+                    dictionary[contestantNumber].Notify(winnerMessage);
                 }
                 else
                 {
-                    dictionary[contestantNumber].SweepstakesMessage(otherMessage);
+                    dictionary[contestantNumber].Notify(otherMessage);
                 }
             }
         }
