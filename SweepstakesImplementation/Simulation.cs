@@ -27,5 +27,12 @@ namespace SweepstakesImplementation
                 return new SweepstakesStackManager();
             }
         }
+
+        public void RunSim()
+        {
+            ISweepstakesManager manager = SweepstakesManagerFactory(SweepstakesManagerType.QueueManager);
+            MarketingFirm firm = new MarketingFirm(manager);
+            firm.RunQueueManagerHundredEntriesSimulation();
+        }
     }
 }

@@ -27,7 +27,7 @@ namespace SweepstakesImplementation
             dictionary[contestant.RegistrationNumber] = contestant;
         }
 
-        private void NotifyAllContestants(int winnerRegistrationNumber)
+        public void NotifyAllContestants(int winnerRegistrationNumber)
         {
             string firstName = dictionary[winnerRegistrationNumber].FirstName;
             string lastName = dictionary[winnerRegistrationNumber].LastName;
@@ -53,7 +53,6 @@ namespace SweepstakesImplementation
             {
                 if (count == dictionaryIndex)
                 {
-                    NotifyAllContestants(contestantNum);
                     return dictionary[contestantNum];
                 }
                 else

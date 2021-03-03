@@ -4,8 +4,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 16.0.30907.101
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SweepstakesImplementation", "SweepstakesImplementation\SweepstakesImplementation.csproj", "{47C7B25A-0667-42D4-A56D-CFDE8322F225}"
+	ProjectSection(ProjectDependencies) = postProject
+		{27A76738-3701-47B4-9FE7-B44BA755449C} = {27A76738-3701-47B4-9FE7-B44BA755449C}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTests", "UnitTests\UnitTests.csproj", "{BBC2A2F5-9DF6-43E1-960E-1E6D7D01A31B}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MailKit", "Mailkit\MailKit\MailKit.csproj", "{27A76738-3701-47B4-9FE7-B44BA755449C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +26,10 @@ Global
 		{BBC2A2F5-9DF6-43E1-960E-1E6D7D01A31B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BBC2A2F5-9DF6-43E1-960E-1E6D7D01A31B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BBC2A2F5-9DF6-43E1-960E-1E6D7D01A31B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{27A76738-3701-47B4-9FE7-B44BA755449C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{27A76738-3701-47B4-9FE7-B44BA755449C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{27A76738-3701-47B4-9FE7-B44BA755449C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{27A76738-3701-47B4-9FE7-B44BA755449C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
