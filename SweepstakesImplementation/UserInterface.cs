@@ -14,6 +14,42 @@ namespace SweepstakesImplementation
             Console.WriteLine(prompt);
             return Console.ReadLine();
         }
+        public static int AskForSweepstakesManagerType()
+        {
+            bool done = false;
+            bool prevError = false;
+            string userInput;
+            int value = -1;
+            int result = -1;
+            while (!done)
+            {
+                if (prevError)
+                {
+                    userInput = GetUserInputFor("Previous input was invalid. Please enter 1 for SweepstakesStackManager or 2 for SweepstakesQueueManager:");
+                }
+                else
+                {
+                    userInput = GetUserInputFor("Please enter 1 for SweepstakesStackManager or 2 for SweepstakesQueueManager:");
+                }
+                if (Int32.TryParse(userInput, out value))
+                {
+                    if (value == 1 || value == 2)
+                    {
+                        result = value;
+                        done = true;
+                    }
+                    else
+                    {
+                        prevError = true;
+                    }
+                }
+                else
+                {
+                    prevError = true;
+                }
+            }
+            return result;
+        }
 
         public static string[] GetFirstAndLastName()
         {
@@ -124,6 +160,7 @@ namespace SweepstakesImplementation
                     if (value > -1)
                     {
                         registrationNumber = value;
+                        done = true;
                     }
                     else
                     {
