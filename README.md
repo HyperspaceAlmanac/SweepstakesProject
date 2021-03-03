@@ -13,7 +13,7 @@ If MarketingFirm implementation is changed to not use something that implements 
 Overall this makes the dependency between ISweepstakesManager interface and MarketingFirm a lot easier to manage.
 
 ###################################
-# This Project uses MailKit APi
+# This Project uses MailKit API
 ###################################
 
 # MailKit API License
