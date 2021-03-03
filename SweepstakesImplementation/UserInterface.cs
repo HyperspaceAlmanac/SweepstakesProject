@@ -14,13 +14,13 @@ namespace SweepstakesImplementation
             Console.WriteLine(prompt);
             return Console.ReadLine();
         }
-        public static int AskForSweepstakesManagerType()
+        public static SweepstakesManagerType AskForSweepstakesManagerType()
         {
             bool done = false;
             bool prevError = false;
             string userInput;
             int value = -1;
-            int result = -1;
+            SweepstakesManagerType result = SweepstakesManagerType.QueueManager;
             while (!done)
             {
                 if (prevError)
@@ -35,7 +35,10 @@ namespace SweepstakesImplementation
                 {
                     if (value == 1 || value == 2)
                     {
-                        result = value;
+                        if (value == 2)
+                        {
+                            result = SweepstakesManagerType.StackManager;
+                        }
                         done = true;
                     }
                     else
