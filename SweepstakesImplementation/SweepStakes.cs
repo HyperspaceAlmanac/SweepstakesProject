@@ -26,7 +26,22 @@ namespace SweepstakesImplementation
             dictionary[contestant.RegistrationNumber] = contestant;
         }
 
-
+        private void NotifyAllContestants(int winnerRegistrationNumber)
+        {
+            string winnerMessage = "The sweepstakes is over. Congraduatlions! You are the winner!";
+            string otherMessage = $"The sweepstakes is over. Contestant {winnerRegistrationNumber} is the winer!";
+            foreach (int contestantNumber in dictionary.Keys)
+            {
+                if (contestantNumber == winnerRegistrationNumber)
+                {
+                    dictionary[contestantNumber].SweepstakesMessage(winnerMessage);
+                }
+                else
+                {
+                    dictionary[contestantNumber].SweepstakesMessage(otherMessage);
+                }
+            }
+        }
         public Contestant PickWinner()
         {
             int dictionaryIndex = rand.Next(dictionary.Count);
@@ -35,6 +50,7 @@ namespace SweepstakesImplementation
             {
                 if (count == dictionaryIndex)
                 {
+                    NotifyAllContestants(contestantNum);
                     return dictionary[contestantNum];
                 }
                 else

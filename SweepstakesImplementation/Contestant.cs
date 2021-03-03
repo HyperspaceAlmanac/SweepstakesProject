@@ -32,6 +32,9 @@ namespace SweepstakesImplementation
             this.address = address;
             this.registrationNumber = registrationNumber;
         }
+        public void SweepstakesMessage(string message)
+        {
+        }
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string Email { get; set; }

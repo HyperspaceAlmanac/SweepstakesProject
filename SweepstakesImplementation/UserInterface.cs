@@ -87,7 +87,7 @@ namespace SweepstakesImplementation
             {
                 if (prevError)
                 {
-                    userInput = GetUserInputFor(("Previous input was invalid, please try entering your last name again");
+                    userInput = GetUserInputFor("Previous input was invalid, please try entering your last name again");
                 }
                 else
                 {
