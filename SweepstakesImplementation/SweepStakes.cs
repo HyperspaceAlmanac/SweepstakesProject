@@ -16,14 +16,18 @@ namespace SweepstakesImplementation
             this.name = name;
             rand = new Random(100);
         }
+        public string Name
+        {
+            get; set;
+        }
 
-        void RegisterContestant(Contestant contestant)
+        public void RegisterContestant(Contestant contestant)
         {
             dictionary[contestant.RegistrationNumber] = contestant;
         }
 
 
-        Contestant PickWinner()
+        public Contestant PickWinner()
         {
             int dictionaryIndex = rand.Next(dictionary.Count);
             int count = 0;
@@ -41,7 +45,7 @@ namespace SweepstakesImplementation
             return null;
         }
 
-        void PrintCOntestantInfo(Contestant contestant)
+        public void PrintCOntestantInfo(Contestant contestant)
         {
             Console.WriteLine($"Contestant number {contestant.RegistrationNumber}:");
             Console.WriteLine($"First name: {contestant.FirstName}, Last name: {contestant.LastName}");
