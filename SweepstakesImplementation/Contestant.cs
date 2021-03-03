@@ -8,38 +8,38 @@ namespace SweepstakesImplementation
 {
     class Contestant : INotification
     {
-        private string firstName;
-        private string lastName;
-        private string email;
-        private string address;
-        private int registrationNumber;
+        private string _firstName;
+        private string _lastName;
+        private string _email;
+        private string _address;
+        private int _registrationNumber;
 
         public void FillOutInformation()
         {
             string[] temp = UserInterface.GetFirstAndLastName();
-            firstName = temp[0];
-            lastName = temp[1];
-            email = UserInterface.GetEmail();
-            address = UserInterface.GetAddress();
-            registrationNumber = UserInterface.GetRegistrationNumber();
+            _firstName = temp[0];
+            _lastName = temp[1];
+            _email = UserInterface.GetEmail();
+            _address = UserInterface.GetAddress();
+            _registrationNumber = UserInterface.GetRegistrationNumber();
         }
         // For testing and instantiating Contestant class without asking for user input
         public void FillOutInformation(string firstName, string lastName, string email, string address, int registrationNumber)
         {
-            this.firstName = firstName;
-            this.lastName = lastName;
-            this.email = email;
-            this.address = address;
-            this.registrationNumber = registrationNumber;
+            _firstName = firstName;
+            _lastName = lastName;
+            _email = email;
+            _address = address;
+            _registrationNumber = registrationNumber;
         }
         public void Notify(string message)
         {
-            Console.WriteLine($"entry {registrationNumber} has received the sweepstakes results");
+            Console.WriteLine($"entry {_registrationNumber} has received the sweepstakes results");
         }
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
-        public string Email { get; set; }
-        public string Address { get; set; }
-        public int RegistrationNumber { get; set; }
+        public string FirstName { get => _firstName ; set => _firstName = value; }
+        public string LastName { get => _lastName ; set => _lastName = value; }
+        public string Email { get => _email; set => _email = value; }
+        public string Address { get => _address; set => _address = value; }
+        public int RegistrationNumber { get => _registrationNumber; set => _registrationNumber = value; }
     }
 }
