@@ -8,18 +8,18 @@ namespace SweepstakesImplementation
 {
     class Sweepstakes
     {
-        private string name;
-        private Random rand;
+        private string _name;
+        private Random _rand;
         private Dictionary<int, Contestant> dictionary;
         public Sweepstakes(string name)
         {
-            this.name = name;
-            rand = new Random(100);
+            _name = name;
+            _rand = new Random(100);
             dictionary = new Dictionary<int, Contestant>();
         }
         public string Name
         {
-            get; set;
+            get => _name; set => _name = value;
         }
 
         public void RegisterContestant(Contestant contestant)
@@ -47,7 +47,7 @@ namespace SweepstakesImplementation
         }
         public Contestant PickWinner()
         {
-            int dictionaryIndex = rand.Next(dictionary.Count);
+            int dictionaryIndex = _rand.Next(dictionary.Count);
             int count = 0;
             foreach (int contestantNum in dictionary.Keys)
             {
