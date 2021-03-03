@@ -6,9 +6,14 @@ using System.Threading.Tasks;
 
 namespace SweepstakesImplementation
 {
+    enum SweepstakesManagerType
+    {
+        QueueManager,
+        StackManager
+    }
     interface ISweepstakesManager
     {
-        void InsertSweepstakes(SweepStakes sweepstakes);
-        SweepStakes GetSweepstakes();
+        void InsertSweepstakes(Sweepstakes sweepstakes);
+        Sweepstakes GetSweepstakes();
     }
 }

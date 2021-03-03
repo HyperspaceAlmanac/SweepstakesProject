@@ -8,14 +8,14 @@ namespace SweepstakesImplementation
 {
     class SweepstakesQueueManager : ISweepstakesManager
     {
-        private Queue<SweepStakes> queue;
+        private Queue<Sweepstakes> queue;
 
-        public void InsertSweepstakes(SweepStakes sweepstakes)
+        public void InsertSweepstakes(Sweepstakes sweepstakes)
         {
             queue.Enqueue(sweepstakes);
         }
 
-        public SweepStakes GetSweepstakes()
+        public Sweepstakes GetSweepstakes()
         {
             if (queue.Count > 0)
             {

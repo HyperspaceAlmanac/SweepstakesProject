@@ -6,12 +6,12 @@ using System.Threading.Tasks;
 
 namespace SweepstakesImplementation
 {
-    class SweepStakes
+    class Sweepstakes
     {
         private string name;
         private Random rand;
         private Dictionary<int, Contestant> dictionary;
-        public SweepStakes(string name)
+        public Sweepstakes(string name)
         {
             this.name = name;
             rand = new Random(100);

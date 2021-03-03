@@ -11,5 +11,17 @@ namespace SweepstakesImplementation
         public void CreateMarketingFirmWithManager()
         {
         }
+
+        public ISweepstakesManager GenerateSweepStakesManager(SweepstakesManagerType sweepstakesType)
+        {
+            if (sweepstakesType == SweepstakesManagerType.QueueManager)
+            {
+                return new SweepstakesQueueManager();
+            }
+            else
+            {
+                return new SweepstakesStackManager();
+            }
+        }
     }
 }
