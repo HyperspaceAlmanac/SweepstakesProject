@@ -30,6 +30,19 @@ namespace SweepstakesImplementation
 
         public void RunSim()
         {
+            CurrentTests();
+        }
+        // Just change this to test anything
+        private void CurrentTests()
+        {
+            ISweepstakesManager manager = SweepstakesManagerFactory(SweepstakesManagerType.QueueManager);
+            //ISweepstakesManager manager = SweepstakesManagerFactory(SweepstakesManagerType.StackManager);
+            MarketingFirm firm = new MarketingFirm(manager);
+            firm.CurrentTests();
+        }
+
+        private void HundredEntryQueueManagerTest()
+        {
             ISweepstakesManager manager = SweepstakesManagerFactory(SweepstakesManagerType.QueueManager);
             MarketingFirm firm = new MarketingFirm(manager);
             firm.RunQueueManagerHundredEntriesSimulation();
