@@ -37,6 +37,15 @@ namespace SweepstakesImplementation
             Console.WriteLine($"Contestant with entry {_registrationNumber} has received the following sweepstakes results:");
             Console.WriteLine(message);
         }
+        public string ContactEmail()
+        {
+            return _email;
+        }
+
+        public string FullName()
+        {
+            return _firstName + " " + _lastName;
+        }
         public string FirstName { get => _firstName ; set => _firstName = value; }
         public string LastName { get => _lastName ; set => _lastName = value; }
         public string Email { get => _email; set => _email = value; }

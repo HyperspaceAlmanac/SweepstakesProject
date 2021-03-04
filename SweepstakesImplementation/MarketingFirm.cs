@@ -36,7 +36,7 @@ namespace SweepstakesImplementation
             _manager.InsertSweepstakes(sweepstakes);
         }
 
-        public void PickWinnerAndNotifyAllContestants(Sweepstakes sweepstakes)
+        public void PickWinner(Sweepstakes sweepstakes)
         {
             Contestant winner = sweepstakes.PickWinner();
         }
