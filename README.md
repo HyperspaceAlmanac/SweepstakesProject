@@ -13,18 +13,31 @@ If MarketingFirm implementation is changed to not use something that implements 
 Overall this makes the dependency between ISweepstakesManager interface and MarketingFirm a lot easier to manage.
 
 
+##############################
 Note about email capabilities implementation:
 
 I have been testing the email sending functionalities with gmail accounts, and the project is hard coded for gmail server "smtp.gmail.com" and port 587.
 I had to enable less secure apps (through specific link for those accounts) to not have to use OAuth 2.0.
 Other email servers may have different requirements.
-I did most of my testing by having the program read from text files with the email address for send and receive (added to gitignore).
+The emails and password(for the one that sends) are now placed into a static class and added to .gitignore.
+
+Implementatio notes for SensitiveInfo class:
+The SensitiveInfo class should be static.
+It should have a public static string EmailSender.
+It should have a public static string EmailPassword.
+It should have have a Method GetRandomEmail() for retrieving a random email for EmailReceiver.
+
+## As a side effect of trying to get MailKit to work, the Project is using .Net 4.8
 
 ###################################
-# This Project uses MailKit API
+# This Project uses MailKit
 ###################################
 
-# MailKit API License
+I have MailKit as a Submodule, but not actually using it.
+Ran into issues with dependencies and found out that I could have just used NuGet to install it.
+Now the project is is using the MailKit version installed with NuGet.
+
+# MailKit License
 MIT License
 
 Copyright (C) 2013-2020 .NET Foundation and Contributors
