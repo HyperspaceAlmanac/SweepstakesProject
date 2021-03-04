@@ -16,9 +16,9 @@ namespace SweepstakesImplementation
         private ISweepstakesObserver _observerSystem;
 
         // Dependency injection, takes in manager object rather than instantiating one
-        public MarketingFirm(ISweepstakesManager manager, ISweepstakesObserver observerSystem)
+        public MarketingFirm(ISweepstakesManager manager, ISweepstakesObserver observerSystem, string firmName = "Fictional Marketing Firm")
         {
-            _firmName = "Fictional Marketing Firm";
+            _firmName = firmName;
             _manager = manager;
             _observerSystem = observerSystem;
         }
