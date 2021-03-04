@@ -34,7 +34,8 @@ namespace SweepstakesImplementation
         }
         public void Notify(string message)
         {
-            Console.WriteLine($"entry {_registrationNumber} has received the sweepstakes results");
+            Console.WriteLine($"Contestant with entry {_registrationNumber} has received the following sweepstakes results:");
+            Console.WriteLine(message);
         }
         public string FirstName { get => _firstName ; set => _firstName = value; }
         public string LastName { get => _lastName ; set => _lastName = value; }

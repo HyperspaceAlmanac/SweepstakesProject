@@ -8,6 +8,18 @@ namespace SweepstakesImplementation
 {
     class Simulation
     {
+        public void RunSim()
+        {
+            // Default is for the one to let user choose SweepstakesManater
+            CreateMarketingFirmWithManager();
+
+            // Other tests goes here
+            //CurrentTests();
+
+            // Test to randomly generate 100 contestants, and pick winner, and send email to specified emails
+            //HundredEntryQueueManagerTest();
+
+        }
         public void CreateMarketingFirmWithManager()
         {
             SweepstakesManagerType managerType = UserInterface.AskForSweepstakesManagerType();
@@ -28,10 +40,7 @@ namespace SweepstakesImplementation
             }
         }
 
-        public void RunSim()
-        {
-            CurrentTests();
-        }
+
         // Just change this to test anything
         private void CurrentTests()
         {
