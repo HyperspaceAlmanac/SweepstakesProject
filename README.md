@@ -12,6 +12,14 @@ If MarketingFirm implementation is changed to not use something that implements 
 
 Overall this makes the dependency between ISweepstakesManager interface and MarketingFirm a lot easier to manage.
 
+
+Note about email capabilities implementation:
+
+I have been testing the email sending functionalities with gmail accounts, and the project is hard coded for gmail server "smtp.gmail.com" and port 587.
+I had to enable less secure apps (through specific link for those accounts) to not have to use OAuth 2.0.
+Other email servers may have different requirements.
+I did most of my testing by having the program read from text files with the email address for send and receive (added to gitignore).
+
 ###################################
 # This Project uses MailKit API
 ###################################
