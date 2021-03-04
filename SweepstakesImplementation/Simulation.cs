@@ -19,6 +19,11 @@ namespace SweepstakesImplementation
             // Test to randomly generate 100 contestants, and pick winner, and send email to specified emails
             //HundredEntryQueueManagerTest();
 
+            // Three contests, using Queue Manager. Should be 0, 1, 2 for tokens
+            //MultipleContestsQueueManagerTest();
+
+            // Three contests, using stack Manager. Should be 2, 1, 0 for tokens
+            // MultipleContestsStackManagerTest();
         }
         public void CreateMarketingFirmWithManager()
         {
@@ -47,6 +52,21 @@ namespace SweepstakesImplementation
             ISweepstakesObserver observerSystem = new SweepstakesObserverSystem();
             MarketingFirm firm = new MarketingFirm(manager, observerSystem);
             firm.RunQueueManagerHundredEntriesSimulation();
+        }
+
+        private void MultipleContestsQueueManagerTest()
+        {
+            ISweepstakesManager manager = SweepstakesManagerFactory.GenerateSweepstakesManager(SweepstakesManagerType.QueueManager);
+            ISweepstakesObserver observerSystem = new SweepstakesObserverSystem();
+            MarketingFirm firm = new MarketingFirm(manager, observerSystem);
+            firm.RunMultipleContests();
+        }
+        private void MultipleContestsStackManagerTest()
+        {
+            ISweepstakesManager manager = SweepstakesManagerFactory.GenerateSweepstakesManager(SweepstakesManagerType.StackManager);
+            ISweepstakesObserver observerSystem = new SweepstakesObserverSystem();
+            MarketingFirm firm = new MarketingFirm(manager, observerSystem);
+            firm.RunMultipleContests();
         }
     }
 }

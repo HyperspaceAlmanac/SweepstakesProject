@@ -59,7 +59,7 @@
   <ItemGroup>
     <Compile Include="Contestant.cs" />
     <Compile Include="EmailChecker.cs" />
-    <Compile Include="INotification.cs" />
+    <Compile Include="ICanBeNotified.cs" />
     <Compile Include="ISweepstakesManager.cs" />
     <Compile Include="MarketingFirm.cs" />
     <Compile Include="Program.cs" />
@@ -68,6 +68,8 @@
     <Compile Include="Simulation.cs" />
     <Compile Include="Sweepstakes.cs" />
     <Compile Include="SweepstakesManagerFactory.cs" />
+    <Compile Include="ISweepstakesObserver.cs" />
+    <Compile Include="SweepstakesObserverSystem.cs" />
     <Compile Include="SweepstakesQueueManager.cs" />
     <Compile Include="SweepstakesStackManager.cs" />
     <Compile Include="UserInterface.cs" />

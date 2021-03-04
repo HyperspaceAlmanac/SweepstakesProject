@@ -73,6 +73,42 @@ namespace SweepstakesImplementation
             PickWinner(sweepstakes);
         }
 
+        public void RunMultipleContests()
+        {
+            // 5 most popular baby boy and 5 most popular baby girl names of 2021
+            // Probably going to stick with this for now, but thinking about it more this might make it more likely to get detected as spam
+            string[] _firstNames = new string[] { "Liam", "Noah", "Oliver", "William", "Elijah", "Olivia", "Emma", "Ava", "Sophia", "Isabella" };
+            // 10 most common surnames
+            string[] _lastNames = new string[] { "Smith", "Johnson", "Williams", "Brown", "Jones", "Garcia", "Miller", "Davis", "Rodriguez", "Martinez" };
+            // Address, a lot of people just decline to fill it in, randomly do a few
+            string[] _addresses = new string[] { "", "1234 Street", "First Street", "London", "Randomly filling something out", "aaaaaaaaaaa" };
+
+            // Do not want to accidentally sending things out to real emails
+            // Going to have a static string[] with list of my own email addresses
+            // Going to hide how many there are. It is going to randomly return an address
+            Random _rand = new Random();
+
+            string tempFirst, tempLast, tempAddr;
+            CreateSweepstake("Trip for Two to Paris");
+            CreateSweepstake("Trip to London");
+            CreateSweepstake("Local Contest");
+            Sweepstakes sweepstakes;
+            for (int j = 0; j < 3; j++)
+            {
+                sweepstakes = _manager.GetSweepstakes();
+                for (int i = 0; i < 100; i++)
+                {
+                    tempFirst = _firstNames[_rand.Next(_firstNames.Length)];
+                    tempLast = _lastNames[_rand.Next(_lastNames.Length)];
+                    tempAddr = _addresses[_rand.Next(_addresses.Length)];
+                    Contestant entry = new Contestant();
+                    entry.FillOutInformation(tempFirst, tempLast, SensitiveInfo.GetRandomEmail(), tempAddr, i);
+                    sweepstakes.RegisterContestant(entry);
+                }
+                PickWinner(sweepstakes);
+            }
+        }
+
         public void StackAndQueueTests()
         {
             CreateSweepstake("first");

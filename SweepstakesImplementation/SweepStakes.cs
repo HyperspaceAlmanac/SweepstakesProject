@@ -9,7 +9,7 @@ namespace SweepstakesImplementation
     class Sweepstakes
     {
         private string _name;
-        private Random _rand;
+        private static Random _rand = new Random();
         private Dictionary<int, Contestant> dictionary;
 
         // Observer related
@@ -21,7 +21,6 @@ namespace SweepstakesImplementation
         public Sweepstakes(string name, ISweepstakesObserver observerSystem)
         {
             _name = name;
-            _rand = new Random();
             dictionary = new Dictionary<int, Contestant>();
             // Create mapping of RegistrationNumber to observer number retrieved from observerSystem
             _observerMapping = new Dictionary<int, int>();
@@ -52,7 +51,7 @@ namespace SweepstakesImplementation
                     // Not completely sure about right way to do this.
                     // I want there to be distinction between Contestant and ICanBeNotified
                     int winnerObserverNumber = _observerMapping[contestantNum];
-                    observerSystem.NotifyDrawingDone(eventSystemToken, winnerObserverNumber);
+                    observerSystem.NotifyDrawingDone(eventSystemToken, winnerObserverNumber, _name);
                     return dictionary[contestantNum];
                 }
                 else
