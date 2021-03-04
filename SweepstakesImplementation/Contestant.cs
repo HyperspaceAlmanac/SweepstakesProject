@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SweepstakesImplementation
 {
-    class Contestant : INotification
+    class Contestant : ICanBeNotified
     {
         private string _firstName;
         private string _lastName;

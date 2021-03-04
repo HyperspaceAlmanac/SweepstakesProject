@@ -27,24 +27,6 @@ namespace SweepstakesImplementation
             dictionary[contestant.RegistrationNumber] = contestant;
         }
 
-        public void NotifyAllContestants(int winnerRegistrationNumber)
-        {
-            string firstName = dictionary[winnerRegistrationNumber].FirstName;
-            string lastName = dictionary[winnerRegistrationNumber].LastName;
-            string winnerMessage = "The sweepstakes is over. Congraduatlions! You are the winner!";
-            string otherMessage = $"The sweepstakes is over. Contestant {winnerRegistrationNumber} {firstName} {lastName} is the winer!";
-            foreach (int contestantNumber in dictionary.Keys)
-            {
-                if (contestantNumber == winnerRegistrationNumber)
-                {
-                    dictionary[contestantNumber].Notify(winnerMessage);
-                }
-                else
-                {
-                    dictionary[contestantNumber].Notify(otherMessage);
-                }
-            }
-        }
         public Contestant PickWinner()
         {
             int dictionaryIndex = _rand.Next(dictionary.Count);

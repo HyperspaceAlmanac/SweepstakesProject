@@ -6,8 +6,10 @@ using System.Threading.Tasks;
 
 namespace SweepstakesImplementation
 {
-    interface INotification
+    interface ICanBeNotified
     {
         void Notify(string message);
+        string ContactEmail();
+        string FullName();
     }
 }

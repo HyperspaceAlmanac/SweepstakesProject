@@ -39,34 +39,6 @@ namespace SweepstakesImplementation
         public void PickWinnerAndNotifyAllContestants(Sweepstakes sweepstakes)
         {
             Contestant winner = sweepstakes.PickWinner();
-            sweepstakes.NotifyAllContestants(winner.RegistrationNumber);
-            SendWinningContestantEmail(winner, sweepstakes.Name);
-        }
-        private void SendWinningContestantEmail(Contestant winner, string sweepstakesName)
-        {
-            // Email address and password for it are both saved in a static class
-            // that is added to gitignore.
-            string emailFrom = SensitiveInfo.EmailSender;
-            string password = SensitiveInfo.EmailPassword;
-            string emailTo = winner.Email;
-
-            // Always ask for password!
-            MimeMessage message = new MimeMessage();
-            message.Subject = $"Dear {winner.FirstName} {winner.LastName}, you are the winner of the {sweepstakesName} sweepstakes!";
-            message.Body = new TextPart(MimeKit.Text.TextFormat.Plain)
-            {
-                Text = @"This is not sketchy at all. Please follow these instructions to claim your prize."
-            };
-
-            message.From.Add(new MailboxAddress(_firmName, emailFrom));
-            message.To.Add(new MailboxAddress(winner.FirstName + " " + winner.LastName, emailTo));
-
-            SmtpClient client = new SmtpClient();
-            client.Connect("smtp.gmail.com", 587);
-            client.AuthenticationMechanisms.Remove("XOAUTH2");
-            client.Authenticate(emailFrom, password);
-            client.Send(message);
-            client.Disconnect(true);
         }
 
         public void RunQueueManagerHundredEntriesSimulation()
@@ -77,7 +49,7 @@ namespace SweepstakesImplementation
             // 10 most common surnames
             string[] _lastNames = new string[] { "Smith", "Johnson", "Williams", "Brown", "Jones", "Garcia", "Miller", "Davis", "Rodriguez", "Martinez" };
             // Address, a lot of people just decline to fill it in, randomly do a few
-            string[] _addresses = new string[] { "", "1234 Street", "First Street", "Lodon", "Randomly filling something out", "aaaaaaaaaaa" };
+            string[] _addresses = new string[] { "", "1234 Street", "First Street", "London", "Randomly filling something out", "aaaaaaaaaaa" };
             
             // Do not want to accidentally sending things out to real emails
             // Going to have a static string[] with list of my own email addresses
@@ -99,12 +71,27 @@ namespace SweepstakesImplementation
             PickWinnerAndNotifyAllContestants(sweepstakes);
         }
 
-        public void CurrentTests()
+        public void StackAndQueueTests()
         {
             CreateSweepstake("first");
             CreateSweepstake("second");
             Sweepstakes temp = _manager.GetSweepstakes();
             temp = _manager.GetSweepstakes();
+        }
+
+        public void CurrentTests()
+        {
+            CreateSweepstake("first");
+            Sweepstakes temp = _manager.GetSweepstakes();
+
+            Contestant contestant;
+            for (int i = 0; i < 3; i++)
+            {
+                contestant = new Contestant();
+                contestant.FillOutInformation();
+                temp.RegisterContestant(contestant);
+            }
+            temp.PickWinner();
         }
     }
 }
