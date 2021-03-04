@@ -39,6 +39,15 @@ namespace SweepstakesImplementation
         }
         private void SendWinningContestantEmail(Contestant winner)
         {
+            // Going to read email address from file added to gitignore.
+            string emailFrom = System.IO.File.ReadAllText("..\\..\\..\\EmailReceiver.txt");
+            string emailTo = winner.Email;
+            string confirmation = UserInterface.GetUserInputFor($"Please enter \"yes\" to confirm that you would like to send email from {emailFrom} to {emailTo}");
+            if (confirmation == "yes")
+            {
+                // Always ask for password!
+                string password = UserInterface.GetUserInputFor($"Please enter the password for the email address");
+            }
         }
 
 
@@ -53,7 +62,7 @@ namespace SweepstakesImplementation
             string[] _addresses = new string[] { "", "1234 Street", "First Street", "Lodon", "Randomly filling something out", "aaaaaaaaaaa" };
             // Since this is public repo, leavine these blank. Only doing specific ones for testing
             // Also do not want to accidentally send email to real addresses
-            string[] _emails = new string[] { "" };
+            string commonEmail = System.IO.File.ReadAllText("..\\..\\..\\EmailReceiver.txt");
             Random _rand = new Random();
 
             string tempFirst, tempLast, tempAddr;
@@ -65,7 +74,7 @@ namespace SweepstakesImplementation
                 tempLast = _lastNames[_rand.Next(_lastNames.Length)];
                 tempAddr = _addresses[_rand.Next(_addresses.Length)];
                 Contestant entry = new Contestant();
-                entry.FillOutInformation(tempFirst, tempLast, "", tempAddr, i);
+                entry.FillOutInformation(tempFirst, tempLast, commonEmail, tempAddr, i);
                 sweepstakes.RegisterContestant(entry);
             }
             PickWinnerAndNotifyAllContestants(sweepstakes);
