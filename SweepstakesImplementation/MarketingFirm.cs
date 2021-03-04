@@ -21,6 +21,7 @@ namespace SweepstakesImplementation
             _firmName = firmName;
             _manager = manager;
             _observerSystem = observerSystem;
+            observerSystem.RegisterFirmName(_firmName);
         }
 
         public void CreateSweepstake()

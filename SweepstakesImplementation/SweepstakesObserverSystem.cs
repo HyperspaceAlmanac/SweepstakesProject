@@ -12,42 +12,48 @@ namespace SweepstakesImplementation
     // System for handling event notification for multiple sweepstakes going on
     class SweepstakesObserverSystem : ISweepstakesObserver
     {
-        private Dictionary<int, List<ICanBeNotified>> sweepstakes;
-        private int sweepstakesToken;
+        private Dictionary<int, List<ICanBeNotified>> _sweepstakes;
+        private int _sweepstakesToken;
+        private string _firmName;
 
         public SweepstakesObserverSystem()
         {
-            sweepstakes = new Dictionary<int, List<ICanBeNotified>>();
-            sweepstakesToken = 0;
+            _sweepstakes = new Dictionary<int, List<ICanBeNotified>>();
+            _sweepstakesToken = 0;
+            _firmName = "InsertFirmNameHere";
+        }
+        public void RegisterFirmName(string name)
+        {
+            _firmName = name;
         }
 
         // A sweepstakes calls this to get assigned a token to index into dictionary 
         public int RegisterSweepstakes() {
-            int tokenNum = sweepstakesToken;
-            sweepstakesToken += 1;
-            sweepstakes[tokenNum] = new List<ICanBeNotified>();
+            int tokenNum = _sweepstakesToken;
+            _sweepstakesToken += 1;
+            _sweepstakes[tokenNum] = new List<ICanBeNotified>();
             return tokenNum;
         }
 
         // Sweepstake provides token that it used when registered, and use it to
         // Let the system know to register a new observer into that List
         public int RegisterObserver(int tokenNum, ICanBeNotified observer) {
-            if (!sweepstakes.ContainsKey(tokenNum))
+            if (!_sweepstakes.ContainsKey(tokenNum))
             {
                 return -1;
             }
             else
             {
-                int index = sweepstakes[tokenNum].Count;
-                sweepstakes[tokenNum].Add(observer);
+                int index = _sweepstakes[tokenNum].Count;
+                _sweepstakes[tokenNum].Add(observer);
                 return index;
             }
         }
 
         // Notify all observers that a winner has been declarted
         public void NotifyAllAboutWinner(int tokenNum, int observerToken, string sweepstakesName) {
-            if (sweepstakes.ContainsKey(tokenNum)) {
-                List<ICanBeNotified> observers = sweepstakes[tokenNum];
+            if (_sweepstakes.ContainsKey(tokenNum)) {
+                List<ICanBeNotified> observers = _sweepstakes[tokenNum];
                 ICanBeNotified winner = observers[observerToken];
                 for (int i = 0; i < observers.Count; i++)
                 {
@@ -73,13 +79,13 @@ namespace SweepstakesImplementation
 
             // Always ask for password!
             MimeMessage message = new MimeMessage();
-            message.Subject = $"Dear {name}, you are the winner of the {sweepstakesName} sweepstakes!";
+            message.Subject = $"Dear {name}, you are the winner of {_firmName}'s {sweepstakesName} sweepstakes!";
             message.Body = new TextPart(MimeKit.Text.TextFormat.Plain)
             {
                 Text = @"This is not sketchy at all. Please follow these instructions to claim your prize."
             };
 
-            message.From.Add(new MailboxAddress("Sweepstakes Notification System", emailFrom));
+            message.From.Add(new MailboxAddress("NOREPLY Sweepstakes Notification System", emailFrom));
             message.To.Add(new MailboxAddress(name, emailTo));
 
             SmtpClient client = new SmtpClient();

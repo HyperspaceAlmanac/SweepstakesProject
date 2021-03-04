@@ -11,5 +11,6 @@ namespace SweepstakesImplementation
         int RegisterSweepstakes();
         int RegisterObserver(int tokenNum, ICanBeNotified observer);
         void NotifyAllAboutWinner(int tokenNum, int observerToken, string sweepstakesName);
+        void RegisterFirmName(string firm);
     }
 }
