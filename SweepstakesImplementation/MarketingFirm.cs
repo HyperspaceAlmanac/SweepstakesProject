@@ -13,18 +13,20 @@ namespace SweepstakesImplementation
     {
         private ISweepstakesManager _manager;
         private string _firmName;
+        private ISweepstakesObserver _observerSystem;
 
         // Dependency injection, takes in manager object rather than instantiating one
-        public MarketingFirm(ISweepstakesManager manager)
+        public MarketingFirm(ISweepstakesManager manager, ISweepstakesObserver observerSystem)
         {
             _firmName = "Fictional Marketing Firm";
             _manager = manager;
+            _observerSystem = observerSystem;
         }
 
         public void CreateSweepstake()
         {
             string sweepstakesName = UserInterface.GetUserInputFor("Please enter a name for the sweepstakes");
-            Sweepstakes sweepstakes = new Sweepstakes(sweepstakesName);
+            Sweepstakes sweepstakes = new Sweepstakes(sweepstakesName, _observerSystem);
             _manager.InsertSweepstakes(sweepstakes);
         }
 
@@ -32,7 +34,7 @@ namespace SweepstakesImplementation
 
         public void CreateSweepstake(string sweepstakesName)
         {
-            Sweepstakes sweepstakes = new Sweepstakes(sweepstakesName);
+            Sweepstakes sweepstakes = new Sweepstakes(sweepstakesName, _observerSystem);
             _manager.InsertSweepstakes(sweepstakes);
         }
 
@@ -68,7 +70,7 @@ namespace SweepstakesImplementation
                 entry.FillOutInformation(tempFirst, tempLast, SensitiveInfo.GetRandomEmail(), tempAddr, i);
                 sweepstakes.RegisterContestant(entry);
             }
-            PickWinnerAndNotifyAllContestants(sweepstakes);
+            PickWinner(sweepstakes);
         }
 
         public void StackAndQueueTests()

@@ -23,9 +23,10 @@ namespace SweepstakesImplementation
         public void CreateMarketingFirmWithManager()
         {
             SweepstakesManagerType managerType = UserInterface.AskForSweepstakesManagerType();
+            ISweepstakesObserver observerSystem = new SweepstakesObserverSystem();
 
             ISweepstakesManager manager = SweepstakesManagerFactory.GenerateSweepstakesManager(managerType);
-            MarketingFirm firm = new MarketingFirm(manager);
+            MarketingFirm firm = new MarketingFirm(manager, observerSystem);
         }
 
         // Just change this to test anything
@@ -35,14 +36,16 @@ namespace SweepstakesImplementation
             //ISweepstakesManager manager = SweepstakesManagerFactory(SweepstakesManagerType.StackManager);
             SweepstakesManagerType managerType = UserInterface.AskForSweepstakesManagerType();
             ISweepstakesManager manager = SweepstakesManagerFactory.GenerateSweepstakesManager(managerType);
-            MarketingFirm firm = new MarketingFirm(manager);
+            ISweepstakesObserver observerSystem = new SweepstakesObserverSystem();
+            MarketingFirm firm = new MarketingFirm(manager, observerSystem);
             firm.CurrentTests();
         }
 
         private void HundredEntryQueueManagerTest()
         {
             ISweepstakesManager manager = SweepstakesManagerFactory.GenerateSweepstakesManager(SweepstakesManagerType.QueueManager);
-            MarketingFirm firm = new MarketingFirm(manager);
+            ISweepstakesObserver observerSystem = new SweepstakesObserverSystem();
+            MarketingFirm firm = new MarketingFirm(manager, observerSystem);
             firm.RunQueueManagerHundredEntriesSimulation();
         }
     }

@@ -11,11 +11,22 @@ namespace SweepstakesImplementation
         private string _name;
         private Random _rand;
         private Dictionary<int, Contestant> dictionary;
-        public Sweepstakes(string name)
+
+        // Observer related
+        private Dictionary<int, int> _observerMapping;
+        private int eventSystemToken;
+        private ISweepstakesObserver observerSystem;
+
+        // Dependency injection for observerSystem
+        public Sweepstakes(string name, ISweepstakesObserver observerSystem)
         {
             _name = name;
             _rand = new Random();
             dictionary = new Dictionary<int, Contestant>();
+            // Create mapping of RegistrationNumber to observer number retrieved from observerSystem
+            _observerMapping = new Dictionary<int, int>();
+            eventSystemToken = observerSystem.RegisterSweepstakes();
+            this.observerSystem = observerSystem;
         }
         public string Name
         {
@@ -25,6 +36,9 @@ namespace SweepstakesImplementation
         public void RegisterContestant(Contestant contestant)
         {
             dictionary[contestant.RegistrationNumber] = contestant;
+            int newContestantObserverNumber = observerSystem.RegisterObserver(eventSystemToken, contestant);
+            _observerMapping[contestant.RegistrationNumber] = newContestantObserverNumber;
+            
         }
 
         public Contestant PickWinner()
@@ -35,6 +49,10 @@ namespace SweepstakesImplementation
             {
                 if (count == dictionaryIndex)
                 {
+                    // Not completely sure about right way to do this.
+                    // I want there to be distinction between Contestant and ICanBeNotified
+                    int winnerObserverNumber = _observerMapping[contestantNum];
+                    observerSystem.NotifyDrawingDone(eventSystemToken, winnerObserverNumber);
                     return dictionary[contestantNum];
                 }
                 else
