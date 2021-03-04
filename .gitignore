@@ -348,3 +348,7 @@ MigrationBackup/
 
 # Ionide (cross platform F# VS Code tools) working folder
 .ionide/
+
+# For test email address for sending and receiving email
+EmailSender.txt
+EmailReceiver.txt
