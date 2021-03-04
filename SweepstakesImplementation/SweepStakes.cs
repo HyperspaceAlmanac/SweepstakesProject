@@ -51,7 +51,7 @@ namespace SweepstakesImplementation
                     // Not completely sure about right way to do this.
                     // I want there to be distinction between Contestant and ICanBeNotified
                     int winnerObserverNumber = _observerMapping[contestantNum];
-                    observerSystem.NotifyDrawingDone(eventSystemToken, winnerObserverNumber, _name);
+                    observerSystem.NotifyAllAboutWinner(eventSystemToken, winnerObserverNumber, _name);
                     return dictionary[contestantNum];
                 }
                 else

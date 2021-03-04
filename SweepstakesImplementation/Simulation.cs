@@ -11,7 +11,7 @@ namespace SweepstakesImplementation
         public void RunSim()
         {
             // Default is for the one to let user choose SweepstakesManater
-            CreateMarketingFirmWithManager();
+            //CreateMarketingFirmWithManager();
 
             // Other tests goes here
             //CurrentTests();
@@ -23,7 +23,7 @@ namespace SweepstakesImplementation
             //MultipleContestsQueueManagerTest();
 
             // Three contests, using stack Manager. Should be 2, 1, 0 for tokens
-            // MultipleContestsStackManagerTest();
+            MultipleContestsStackManagerTest();
         }
         public void CreateMarketingFirmWithManager()
         {

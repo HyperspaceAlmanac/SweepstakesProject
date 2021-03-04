@@ -10,6 +10,6 @@ namespace SweepstakesImplementation
     {
         int RegisterSweepstakes();
         int RegisterObserver(int tokenNum, ICanBeNotified observer);
-        void NotifyDrawingDone(int tokenNum, int observerToken, string sweepstakesName);
+        void NotifyAllAboutWinner(int tokenNum, int observerToken, string sweepstakesName);
     }
 }

@@ -44,11 +44,11 @@ namespace SweepstakesImplementation
             }
         }
 
-        // Notify all observers that 
-        public void NotifyDrawingDone(int tokenNum, int observerToken, string sweepstakesName) {
+        // Notify all observers that a winner has been declarted
+        public void NotifyAllAboutWinner(int tokenNum, int observerToken, string sweepstakesName) {
             if (sweepstakes.ContainsKey(tokenNum)) {
                 List<ICanBeNotified> observers = sweepstakes[tokenNum];
-                ICanBeNotified winner = observers[tokenNum];
+                ICanBeNotified winner = observers[observerToken];
                 for (int i = 0; i < observers.Count; i++)
                 {
                     if (i == observerToken)
