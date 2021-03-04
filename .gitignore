@@ -350,6 +350,4 @@ MigrationBackup/
 .ionide/
 
 # For test email address for sending and receiving email
-EmailSender.txt
-EmailReceiver.txt
 SweepstakesImplementation/SensitiveInfo.cs
