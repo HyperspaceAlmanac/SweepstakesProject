@@ -11,13 +11,13 @@ namespace SweepstakesImplementation
         public void RunSim()
         {
             // Default is for the one to let user choose SweepstakesManater
-            CreateMarketingFirmWithManager();
+           // CreateMarketingFirmWithManager();
 
             // Other tests goes here
             //CurrentTests();
 
             // Test to randomly generate 100 contestants, and pick winner, and send email to specified emails
-            //HundredEntryQueueManagerTest();
+            HundredEntryQueueManagerTest();
 
         }
         public void CreateMarketingFirmWithManager()

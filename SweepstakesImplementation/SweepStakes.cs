@@ -14,7 +14,7 @@ namespace SweepstakesImplementation
         public Sweepstakes(string name)
         {
             _name = name;
-            _rand = new Random(100);
+            _rand = new Random();
             dictionary = new Dictionary<int, Contestant>();
         }
         public string Name

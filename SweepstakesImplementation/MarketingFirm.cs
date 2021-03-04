@@ -12,10 +12,12 @@ namespace SweepstakesImplementation
     class MarketingFirm
     {
         private ISweepstakesManager _manager;
+        private string _firmName;
 
         // Dependency injection, takes in manager object rather than instantiating one
         public MarketingFirm(ISweepstakesManager manager)
         {
+            _firmName = "Fictional Marketing Firm";
             _manager = manager;
         }
 
@@ -42,48 +44,44 @@ namespace SweepstakesImplementation
         }
         private void SendWinningContestantEmail(Contestant winner, string sweepstakesName)
         {
-            // Going to read email address from file added to gitignore.
-            // Put string for email to send from here
-            string emailFrom = System.IO.File.ReadAllText("..\\..\\..\\EmailSender.txt");
+            // Email address and password for it are both saved in a static class
+            // that is added to gitignore.
+            string emailFrom = SensitiveInfo.EmailSender;
+            string password = SensitiveInfo.EmailPassword;
             string emailTo = winner.Email;
-            string confirmation = UserInterface.GetUserInputFor($"Please enter \"yes\" to confirm that you would like to send email from {emailFrom} to {emailTo}");
-            if (confirmation == "yes")
+
+            // Always ask for password!
+            MimeMessage message = new MimeMessage();
+            message.Subject = $"Dear {winner.FirstName} {winner.LastName}, you are the winner of the {sweepstakesName} sweepstakes!";
+            message.Body = new TextPart(MimeKit.Text.TextFormat.Plain)
             {
-                string organizationName = UserInterface.GetUserInputFor("Please enter your organization name");
-                // Always ask for password!
-                string password = UserInterface.GetUserInputFor($"Please enter the password for the email address");
-                MimeMessage message = new MimeMessage();
-                message.Subject = $"Dear {winner.FirstName} {winner.LastName}, you are the winner of the {sweepstakesName} sweepstakes!";
-                message.Body = new TextPart(MimeKit.Text.TextFormat.Plain)
-                {
-                    Text = @"This is not sketchy at all. Please follow these instructions to claim your prize."
-                };
+                Text = @"This is not sketchy at all. Please follow these instructions to claim your prize."
+            };
 
-                message.From.Add(new MailboxAddress(organizationName, emailFrom));
-                message.To.Add(new MailboxAddress(winner.FirstName + " " + winner.LastName, emailTo));
+            message.From.Add(new MailboxAddress(_firmName, emailFrom));
+            message.To.Add(new MailboxAddress(winner.FirstName + " " + winner.LastName, emailTo));
 
-                SmtpClient client = new SmtpClient();
-                client.Connect("smtp.gmail.com", 587);
-                client.AuthenticationMechanisms.Remove("XOAUTH2");
-                client.Authenticate(emailFrom, password);
-                client.Send(message);
-                client.Disconnect(true);
-            }
+            SmtpClient client = new SmtpClient();
+            client.Connect("smtp.gmail.com", 587);
+            client.AuthenticationMechanisms.Remove("XOAUTH2");
+            client.Authenticate(emailFrom, password);
+            client.Send(message);
+            client.Disconnect(true);
         }
 
         public void RunQueueManagerHundredEntriesSimulation()
         {
-            // 10 most popular baby boy names of 2021
-            string[] _firstNames = new string[] { "Liam", "Noah", "Oliver", "William", "Elijah", "James", "Benjamin", "Lucas", "Mason", "Ethan" };
+            // 5 most popular baby boy and 5 most popular baby girl names of 2021
+            // Probably going to stick with this for now, but thinking about it more this might make it more likely to get detected as spam
+            string[] _firstNames = new string[] { "Liam", "Noah", "Oliver", "William", "Elijah", "Olivia", "Emma", "Ava", "Sophia", "Isabella" };
             // 10 most common surnames
             string[] _lastNames = new string[] { "Smith", "Johnson", "Williams", "Brown", "Jones", "Garcia", "Miller", "Davis", "Rodriguez", "Martinez" };
             // Address, a lot of people just decline to fill it in, randomly do a few
             string[] _addresses = new string[] { "", "1234 Street", "First Street", "Lodon", "Randomly filling something out", "aaaaaaaaaaa" };
             
-            // Since this is public repo, leavine these blank. Only doing specific ones for testing
-            // Also do not want to accidentally send email to real addresses
-            // Save the email address to send to here
-            string commonEmail = System.IO.File.ReadAllText("..\\..\\..\\EmailReceiver.txt");
+            // Do not want to accidentally sending things out to real emails
+            // Going to have a static string[] with list of my own email addresses
+            // Going to hide how many there are. It is going to randomly return an address
             Random _rand = new Random();
 
             string tempFirst, tempLast, tempAddr;
@@ -95,7 +93,7 @@ namespace SweepstakesImplementation
                 tempLast = _lastNames[_rand.Next(_lastNames.Length)];
                 tempAddr = _addresses[_rand.Next(_addresses.Length)];
                 Contestant entry = new Contestant();
-                entry.FillOutInformation(tempFirst, tempLast, commonEmail, tempAddr, i);
+                entry.FillOutInformation(tempFirst, tempLast, SensitiveInfo.GetRandomEmail(), tempAddr, i);
                 sweepstakes.RegisterContestant(entry);
             }
             PickWinnerAndNotifyAllContestants(sweepstakes);
