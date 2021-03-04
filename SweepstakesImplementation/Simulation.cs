@@ -24,27 +24,14 @@ namespace SweepstakesImplementation
         {
             SweepstakesManagerType managerType = UserInterface.AskForSweepstakesManagerType();
 
-            ISweepstakesManager manager = SweepstakesManagerFactory(managerType);
+            ISweepstakesManager manager = SweepstakesManagerFactory.GenerateSweepstakesManager(managerType);
             MarketingFirm firm = new MarketingFirm(manager);
         }
-
-        public ISweepstakesManager SweepstakesManagerFactory(SweepstakesManagerType sweepstakesType)
-        {
-            if (sweepstakesType == SweepstakesManagerType.QueueManager)
-            {
-                return new SweepstakesQueueManager();
-            }
-            else
-            {
-                return new SweepstakesStackManager();
-            }
-        }
-
 
         // Just change this to test anything
         private void CurrentTests()
         {
-            ISweepstakesManager manager = SweepstakesManagerFactory(SweepstakesManagerType.QueueManager);
+            ISweepstakesManager manager = SweepstakesManagerFactory.GenerateSweepstakesManager(SweepstakesManagerType.QueueManager);
             //ISweepstakesManager manager = SweepstakesManagerFactory(SweepstakesManagerType.StackManager);
             MarketingFirm firm = new MarketingFirm(manager);
             firm.CurrentTests();
@@ -52,7 +39,7 @@ namespace SweepstakesImplementation
 
         private void HundredEntryQueueManagerTest()
         {
-            ISweepstakesManager manager = SweepstakesManagerFactory(SweepstakesManagerType.QueueManager);
+            ISweepstakesManager manager = SweepstakesManagerFactory.GenerateSweepstakesManager(SweepstakesManagerType.QueueManager);
             MarketingFirm firm = new MarketingFirm(manager);
             firm.RunQueueManagerHundredEntriesSimulation();
         }
