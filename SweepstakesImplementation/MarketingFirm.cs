@@ -13,6 +13,7 @@ namespace SweepstakesImplementation
     {
         private ISweepstakesManager _manager;
 
+        // Dependency injection, takes in manager object rather than instantiating one
         public MarketingFirm(ISweepstakesManager manager)
         {
             _manager = manager;
